@@ -16,11 +16,13 @@ from delayviewer.spinner import handle_spinner
 # ------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------
 
-defaultBkupItems_Common : list = [ '.config/coreCfg', '.colordiffrc', '.dircolors',
+defaultBkupItems_Common : list = [ '.config/coreCfg', '.config/tilix/schemes',
+                                  '.local/share/fonts',
+                                  '.colordiffrc', '.dircolors',
                                   '.gitconfig', '.jfrog', '.netrc', '.pypirc',
                                   '.scripts', '.ssh', '.vim', '.vimrc' ]
 
-defaultBkupItems_Zsh : list = [ '.zshrc', '.zprofile', '.zshenv', '.p10k_zsh' ]
+defaultBkupItems_Zsh : list = [ '.zshrc', '.zprofile', '.zshenv', '.p10k.zsh' ]
 
 defaultBkupItems_Bash : list = [ '.bashrc', '.profile', '.bash_profile' ]
 
@@ -120,6 +122,8 @@ def create_archive(spinner = None):
         for item in bkupItems:
             tf.add(item, filter = filter_exclusions)
     spinner.stop()
+
+    print(f' --> Created {color.CGREEN}{archiveName}{color.CEND}!')
 
 # ------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------
