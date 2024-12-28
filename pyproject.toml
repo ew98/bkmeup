@@ -9,8 +9,8 @@ readme = {file = "README.md", content-type = "text/markdown"}
 authors = [{name = "Ed Waldner", email = "waldevburry@proton.me"},]
 maintainers = [{name = "Ed Waldner", email = "waldevburry@proton.me"},]
 # dynamic = ["version"]
-version = "0.1.1"
-requires-python = ">=3.12"
+version = "0.1.2"
+requires-python = ">=3.9"
 dependencies = [
     "argcomplete",
     "distro",
@@ -27,6 +27,9 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
