@@ -5,6 +5,7 @@
 # ======================================================================================================
 
 import os
+import platform
 import tarfile
 
 from datetime import datetime
@@ -40,7 +41,8 @@ def get_ede_version() -> str:
 # ------------------------------------------------------------------------------------------------------
 
 def get_shell_type() -> str:
-    return os.path.basename(os.path.realpath(f'/proc/{os.getppid()}/exe'))
+    envDefaultShell = os.environ.get('SHELL')
+    return os.path.basename(envDefaultShell)
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -50,13 +52,17 @@ def get_linux_system_info() -> str:
     return f'{osRelInfo["name"].replace(" ", "_")}_{osRelInfo["version_id"]}'
 
 def get_macos_system_info() -> str:
-    # need better mechanism of determining OS type and version
-    return 'MacOS'
+    '''
+    macVer = platform.mac_ver()
+    return f'MacOS_{macVer[0]}'
+    '''
+    pp = platform.platform().split('-')
+    return f'{pp[0]}_{pp[1]}'
+
 
 # ------------------------------------------------------------------------------------------------------
 
 def get_system_info() -> str:
-    import platform
     machineName = platform.node()
     shellType = get_shell_type()
     prefix = f'{machineName}_{shellType}'
@@ -67,7 +73,7 @@ def get_system_info() -> str:
     if platform.system().lower() == 'linux':
         return f'{prefix}_{get_linux_system_info()}'
     elif platform.system().lower() == 'darwin':
-        return f'{prefix}_{get_darwin_system_info()}'
+        return f'{prefix}_{get_macos_system_info()}'
     else:
         raise ValueError(f'Unexpected system type: {platform.system().lower()}')
 

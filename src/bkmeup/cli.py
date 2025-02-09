@@ -42,6 +42,10 @@ def cli():
         args = parser.parse_args()
         # print(args)
 
+        if len(sys.argv) == 1:
+            parser.print_help(sys.stderr)
+            sys.exit(0)
+
         if args.version:
             from importlib.metadata import version
             import bkmeup
