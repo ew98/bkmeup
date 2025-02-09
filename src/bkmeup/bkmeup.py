@@ -36,7 +36,7 @@ def get_ede_version() -> str:
     with open('/etc/ede/ede_version', 'r') as f:
         edeVersion = f.read()
 
-    return f'_{edeVersion}'
+    return f'{edeVersion.strip()}'
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ def get_system_info() -> str:
     prefix = f'{machineName}_{shellType}'
 
     if running_in_ede():
-        prefix = f'{prefix}_ede_{get_ede_version()}'
+        prefix = f'{prefix}_{get_ede_version()}'
 
     if platform.system().lower() == 'linux':
         return f'{prefix}_{get_linux_system_info()}'
